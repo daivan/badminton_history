@@ -10,6 +10,7 @@
   <header class="header-bar">
     <nav>
       <a href="index.html" class="active">Matches</a>
+      <a href="statistics.html">Statistics</a>
       <a href="players.html">Players</a>
     </nav>
   </header>
@@ -60,6 +61,26 @@
           <button type="submit" class="btn primary">Save result</button>
         </form>
         <p id="form-message" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="card today-stats">
+        <h2>Standings today</h2>
+        <p id="today-stats-hint" class="empty-hint">No matches played today yet.</p>
+        <div id="today-stats-table-wrapper" hidden>
+          <table class="stats-table" aria-label="Player statistics for today">
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>W</th>
+                <th>L</th>
+                <th>Points for</th>
+                <th>Points against</th>
+                <th>Diff</th>
+              </tr>
+            </thead>
+            <tbody id="today-stats-tbody"></tbody>
+          </table>
+        </div>
       </section>
 
       <section class="card recent-matches">

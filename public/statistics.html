@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veckospel – Statistics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header-bar">
+    <nav>
+      <a href="index.html">Matches</a>
+      <a href="statistics.html" class="active">Statistics</a>
+      <a href="players.html">Players</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <header>
+      <h1>Statistics</h1>
+      <p class="tagline">Overview of all games since the start</p>
+    </header>
+
+    <main>
+      <section class="card all-time-stats">
+        <h2>All-time standings</h2>
+        <p id="alltime-stats-hint" class="empty-hint">No matches recorded yet.</p>
+        <div id="alltime-stats-table-wrapper" hidden>
+          <table class="stats-table" aria-label="All-time player statistics">
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>W</th>
+                <th>L</th>
+                <th>Points for</th>
+                <th>Points against</th>
+                <th>Diff</th>
+              </tr>
+            </thead>
+            <tbody id="alltime-stats-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><a href="index.html">Record a match</a></p>
+    </footer>
+  </div>
+  <script src="statistics.js"></script>
+</body>
+</html>
