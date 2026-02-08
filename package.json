@@ -1,0 +1,15 @@
+{
+  "name": "veckospel-badminton",
+  "version": "1.0.0",
+  "description": "Badminton app to record match results between two players",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["badminton", "scores", "matches"],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

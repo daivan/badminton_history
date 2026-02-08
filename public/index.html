@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veckospel – Badminton</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Veckospel</h1>
+      <p class="tagline">Record badminton matches</p>
+    </header>
+
+    <main>
+      <section class="card record-match">
+        <h2>Record match</h2>
+        <form id="match-form">
+          <div class="row two-cols">
+            <div class="field">
+              <label for="player1">Player 1</label>
+              <input type="text" id="player1" list="players-list" placeholder="Name or choose below" required>
+            </div>
+            <div class="field">
+              <label for="player2">Player 2</label>
+              <input type="text" id="player2" list="players-list" placeholder="Name or choose below" required>
+            </div>
+          </div>
+          <datalist id="players-list"></datalist>
+
+          <div class="row two-cols scores">
+            <div class="field">
+              <label for="score1">Score (Player 1)</label>
+              <input type="number" id="score1" min="0" value="0" required>
+            </div>
+            <div class="field">
+              <label for="score2">Score (Player 2)</label>
+              <input type="number" id="score2" min="0" value="0" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="match-date">Date</label>
+            <input type="date" id="match-date">
+          </div>
+
+          <button type="submit" class="btn primary">Save result</button>
+        </form>
+        <p id="form-message" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="card add-player">
+        <h2>Add player</h2>
+        <form id="player-form">
+          <div class="field">
+            <label for="new-player">Name</label>
+            <input type="text" id="new-player" placeholder="Player name" required>
+          </div>
+          <button type="submit" class="btn secondary">Add</button>
+        </form>
+        <p id="player-message" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="card players-list">
+        <h2>Players</h2>
+        <ul id="players-ul"></ul>
+      </section>
+
+      <section class="card recent-matches">
+        <h2>Recent matches</h2>
+        <ul id="matches-ul"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Data is stored in <code>data/players.json</code> and <code>data/matches.json</code>.</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
