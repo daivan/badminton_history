@@ -345,6 +345,32 @@ footer code {
   font-weight: 500;
 }
 
+.stats-player-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.stats-player-link:hover {
+  color: var(--accent-hover);
+}
+
+.stats-player-link:visited {
+  color: var(--accent);
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
 .stats-wins {
   color: var(--success);
   font-weight: 600;
@@ -414,6 +440,30 @@ footer code {
   max-width: 420px;
   max-height: 90vh;
   overflow-y: auto;
+}
+
+.modal-content--wide {
+  max-width: 560px;
+}
+
+.player-detail-name {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.player-detail-section {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.player-detail-section:first-child {
+  margin-top: 0;
+}
+
+.player-detail-table {
+  margin-top: 0.25rem;
 }
 
 .modal-actions {

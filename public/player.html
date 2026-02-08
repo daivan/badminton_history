@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veckospel – Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header-bar">
+    <nav>
+      <a href="index.html">Matches</a>
+      <a href="statistics.html">Statistics</a>
+      <a href="players.html">Players</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <header>
+      <h1 id="player-page-title">Player statistics</h1>
+      <p class="tagline"><a href="statistics.html">← Back to statistics</a></p>
+    </header>
+
+    <main id="player-detail-main">
+      <p class="empty-hint" id="player-loading">Loading…</p>
+      <p class="empty-hint" id="player-no-name" hidden>No player specified. <a href="statistics.html">Back to statistics</a>.</p>
+
+      <section class="card player-detail-matches" id="section-matches" hidden>
+        <h2>Match history</h2>
+        <div id="player-detail-matches-list"></div>
+      </section>
+
+      <section class="card player-detail-vs" id="section-vs" hidden>
+        <h2>Stats vs each opponent</h2>
+        <div id="player-detail-vs-table"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p><a href="statistics.html">Back to statistics</a></p>
+    </footer>
+  </div>
+
+  <script src="player.js"></script>
+</body>
+</html>

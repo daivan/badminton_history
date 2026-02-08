@@ -6,6 +6,14 @@ function escapeHtml(s) {
   return div.innerHTML;
 }
 
+function escapeAttr(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 function computePlayerStats(matches) {
   const byPlayer = new Map();
   matches.forEach((m) => {
@@ -57,7 +65,9 @@ function loadAllTimeStats() {
           .map(
             (s) => `
           <tr>
-            <td class="stats-player">${escapeHtml(s.name)}</td>
+            <td class="stats-player">
+              <a href="player.html?name=${encodeURIComponent(s.name)}" class="stats-player-link">${escapeHtml(s.name)}</a>
+            </td>
             <td class="stats-wins">${s.wins}</td>
             <td class="stats-losses">${s.losses}</td>
             <td>${s.pointsFor}</td>
