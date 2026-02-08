@@ -62,6 +62,58 @@ app.post('/api/players', (req, res) => {
   }
 });
 
+// Update a player (by index to avoid encoding issues)
+app.put('/api/players/:index', (req, res) => {
+  try {
+    const index = parseInt(req.params.index, 10);
+    const { name } = req.body;
+    if (!name || typeof name !== 'string' || !name.trim()) {
+      return res.status(400).json({ error: 'Player name is required' });
+    }
+    const players = readJson(PLAYERS_FILE);
+    if (index < 0 || index >= players.length) {
+      return res.status(404).json({ error: 'Player not found' });
+    }
+    const newName = name.trim();
+    if (players.includes(newName) && players[index] !== newName) {
+      return res.status(400).json({ error: 'A player with that name already exists' });
+    }
+    const oldName = players[index];
+    players[index] = newName;
+    players.sort((a, b) => a.localeCompare(b));
+    writeJson(PLAYERS_FILE, players);
+
+    // Update all matches that reference the old name
+    const matches = readJson(MATCHES_FILE);
+    let changed = false;
+    matches.forEach((m) => {
+      if (m.player1 === oldName) { m.player1 = newName; changed = true; }
+      if (m.player2 === oldName) { m.player2 = newName; changed = true; }
+    });
+    if (changed) writeJson(MATCHES_FILE, matches);
+
+    res.json(players);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Delete a player (by index)
+app.delete('/api/players/:index', (req, res) => {
+  try {
+    const index = parseInt(req.params.index, 10);
+    const players = readJson(PLAYERS_FILE);
+    if (index < 0 || index >= players.length) {
+      return res.status(404).json({ error: 'Player not found' });
+    }
+    players.splice(index, 1);
+    writeJson(PLAYERS_FILE, players);
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Get all matches
 app.get('/api/matches', (req, res) => {
   try {

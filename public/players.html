@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veckospel – Players</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header-bar">
+    <nav>
+      <a href="index.html">Matches</a>
+      <a href="players.html" class="active">Players</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <header>
+      <h1>Players</h1>
+      <p class="tagline">Add, edit, and remove players</p>
+    </header>
+
+    <main>
+      <section class="card add-player">
+        <h2>Add player</h2>
+        <form id="player-form">
+          <div class="field">
+            <label for="new-player">Name</label>
+            <input type="text" id="new-player" placeholder="Player name" required>
+          </div>
+          <button type="submit" class="btn primary">Add</button>
+        </form>
+        <p id="player-message" class="message" aria-live="polite"></p>
+      </section>
+
+      <section class="card players-list">
+        <h2>All players</h2>
+        <ul id="players-ul"></ul>
+      </section>
+    </main>
+
+    <div id="edit-player-modal" class="modal" hidden aria-modal="true" aria-labelledby="edit-player-modal-title">
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-content card">
+        <h2 id="edit-player-modal-title">Edit player</h2>
+        <form id="edit-player-form">
+          <input type="hidden" id="edit-player-index">
+          <div class="field">
+            <label for="edit-player-name">Name</label>
+            <input type="text" id="edit-player-name" required>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" data-close-modal>Cancel</button>
+            <button type="submit" class="btn primary">Save</button>
+          </div>
+        </form>
+        <p id="edit-player-message" class="message" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <footer>
+      <p><a href="index.html">Back to matches</a></p>
+    </footer>
+  </div>
+  <script src="players.js"></script>
+</body>
+</html>
