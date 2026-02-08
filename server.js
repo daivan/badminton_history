@@ -115,6 +115,68 @@ app.post('/api/matches', (req, res) => {
   }
 });
 
+// Update a match
+app.put('/api/matches/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const { player1, player2, score1, score2, date } = req.body;
+    if (!player1 || !player2) {
+      return res.status(400).json({ error: 'Both players are required' });
+    }
+    const s1 = Number(score1);
+    const s2 = Number(score2);
+    if (Number.isNaN(s1) || Number.isNaN(s2) || s1 < 0 || s2 < 0) {
+      return res.status(400).json({ error: 'Valid scores (numbers >= 0) are required' });
+    }
+
+    const matches = readJson(MATCHES_FILE);
+    const index = matches.findIndex((m) => m.id === id);
+    if (index === -1) {
+      return res.status(404).json({ error: 'Match not found' });
+    }
+
+    const updated = {
+      ...matches[index],
+      player1: player1.trim(),
+      player2: player2.trim(),
+      score1: s1,
+      score2: s2,
+      date: date || new Date().toISOString().slice(0, 10),
+      updatedAt: new Date().toISOString(),
+    };
+    matches[index] = updated;
+    writeJson(MATCHES_FILE, matches);
+
+    const players = readJson(PLAYERS_FILE);
+    [updated.player1, updated.player2].forEach((p) => {
+      if (!players.includes(p)) players.push(p);
+    });
+    players.sort((a, b) => a.localeCompare(b));
+    writeJson(PLAYERS_FILE, players);
+
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Delete a match
+app.delete('/api/matches/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const matches = readJson(MATCHES_FILE);
+    const index = matches.findIndex((m) => m.id === id);
+    if (index === -1) {
+      return res.status(404).json({ error: 'Match not found' });
+    }
+    matches.splice(index, 1);
+    writeJson(MATCHES_FILE, matches);
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Badminton app running at http://localhost:${PORT}`);
 });
